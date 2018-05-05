@@ -15,11 +15,11 @@ for i=1:max_it
        break;
    end
    J = GenJakobi(m,t); %generowanie macierzy Jacobiego
-   dQ = J\P;
-   Q = Q - dQ;
-   m = QdoMechanizmu(m,Q);
+   dQ = J\P; 
+   Q = Q - dQ; %nowe wspó³rzêdne punktów (wzór za metod¹ NR)
+   m = QdoMechanizmu(m,Q); %aktualizacja wspó³rzêdnych cz³onów
 end
-if i == max_it
+if i == max_it %gdy brak zbie¿noœci przyjmuje ostateczny wynik za dobry
    disp('Brak zbieznosci');
    res = mechanizm;
    return;

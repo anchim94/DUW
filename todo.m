@@ -1,5 +1,5 @@
-mech = GenerujProblem();
-wyniki = ADAMS(mech,10,0.05);
+mech = GenerujProblem(); %generowanie problemu
+wyniki = ADAMS(mech,10,0.05); %rozwi¹zywanie zadañ
 hold on;
-plot(wyniki(:,2),wyniki(:,3));
+plot(wyniki(:,2),wyniki(:,3)); %rysowanie wyniku
 hold off;
