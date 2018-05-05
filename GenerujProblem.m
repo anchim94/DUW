@@ -22,25 +22,34 @@ GenCzlon('CZL6','c6',['M','W'],punkty,5);GenCzlon('CZL7','c7',['H','Q'],punkty,6
 GenCzlon('CZL8','c8',['G','Q'],punkty,7)];
 
 %definicja funkcji opisuj¹cych przemieszczenie si³owników
-f1 = @(t)-sqrt(1.8*1.8+0.6*0.6)+0.5*cos(2*t)-0.5;
-f2 = @(t)-sqrt(1.2*1.2+0.6*0.6)-0.2-0.2*sin(0.1*t);
+%f(t)=l+a*sin(om*t+phi)
+l = [-sqrt(1.8*1.8+0.6*0.6) -sqrt(1.2*1.2+0.6*0.6)]; 
+a = [-0.15 0.15];
+om = [2*pi 2*pi];
+phi = [pi pi];
+f1 = @(t) l(1)+a(1)*sin(om(1)*t+phi(1));
+f2 = @(t) l(2)+a(2)*sin(om(2)*t+phi(2));
+%zapisywanie danych funkcji kieruj¹cej do struktury mechanizmu
+mechanizm.a = a;
+mechanizm.om = om;
+mechanizm.phi = phi;
 
 %definiowanie równañ wiêzów przy pomocy funkcji DodajWiez(mechanizm,typ,ob1,punkt1,ob2,punkt2,funkcja)
 mechanizm.wiezyilosc = 0;
 mechanizm.liczbamonitorow = 0;
 
-mechanizm = DodajWiez(mechanizm,'mocowanie','CZL1','O','','',@(t)0);
-mechanizm = DodajWiez(mechanizm,'mocowanie','CZL5','N','','',@(t)0);
-mechanizm = DodajWiez(mechanizm,'mocowanie','CZL7','H','','',@(t)0);
-mechanizm = DodajWiez(mechanizm,'postepowa','CZL7','H','CZL8','G',@(t)0);
-mechanizm = DodajWiez(mechanizm,'przemieszczenie','CZL7','H','CZL8','G',f2);
-mechanizm = DodajWiez(mechanizm,'postepowa','CZL5','N','CZL6','M',@(t)0);
-mechanizm = DodajWiez(mechanizm,'przemieszczenie','CZL5','N','CZL6','M',f1);
-mechanizm = DodajWiez(mechanizm,'obrotowa','CZL8','G','CZL2','G',@(t)0);
-mechanizm = DodajWiez(mechanizm,'obrotowa','CZL2','D','CZL1','D',@(t)0);
-mechanizm = DodajWiez(mechanizm,'obrotowa','CZL2','C','CZL4','C',@(t)0);
-mechanizm = DodajWiez(mechanizm,'obrotowa','CZL4','B','CZL3','B',@(t)0);
-mechanizm = DodajWiez(mechanizm,'obrotowa','CZL3','A','CZL1','A',@(t)0);
-mechanizm = DodajWiez(mechanizm,'obrotowa','CZL1','M','CZL6','M',@(t)0);
+mechanizm = DodajWiez(mechanizm,'mocowanie','CZL1','O','','',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'mocowanie','CZL5','N','','',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'mocowanie','CZL7','H','','',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'postepowa','CZL7','H','CZL8','G',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'przemieszczenie','CZL7','H','CZL8','G',f2,2);
+mechanizm = DodajWiez(mechanizm,'postepowa','CZL5','N','CZL6','M',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'przemieszczenie','CZL5','N','CZL6','M',f1,1);
+mechanizm = DodajWiez(mechanizm,'obrotowa','CZL8','G','CZL2','G',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'obrotowa','CZL2','D','CZL1','D',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'obrotowa','CZL2','C','CZL4','C',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'obrotowa','CZL4','B','CZL3','B',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'obrotowa','CZL3','A','CZL1','A',@(t)0,0);
+mechanizm = DodajWiez(mechanizm,'obrotowa','CZL1','M','CZL6','M',@(t)0,0);
 end
 

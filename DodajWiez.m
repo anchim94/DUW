@@ -1,4 +1,4 @@
-function [mechanizm] = DodajWiez(mechanizm,typ,ob1,punkt1,ob2,punkt2,funkcja)
+function [mechanizm] = DodajWiez(mechanizm,typ,ob1,punkt1,ob2,punkt2,funkcja, funid)
 %DodajWiez Funkcja generuj¹ca wiêz do obslugi po³¹cznienia pomiêdzy dwoma
 %obiektami-czlonami (ob_) oraz punktami do nich nale¿¹cych (punkt_).
 %Id opisuje miejsce w ukladzie rownañ oraz macierzy jakobiego, a funkcja to
@@ -11,6 +11,7 @@ function [mechanizm] = DodajWiez(mechanizm,typ,ob1,punkt1,ob2,punkt2,funkcja)
 %ob2         --- nazwa obiektu (cz³on) 2
 %punkt2      --- nazwa punktu wiêzu nale¿¹cy do cz³onu 2
 %funkcja     --- funkcja specjalna opisuj¹ca relacjê miêdzy cz³onami (dotyczy typu przemieszczenie)
+%funid       --- numer funkcji steruj¹cej
 
 %POLA STRUKTUY WIEZ:
 %typ        --- typ wiezu
@@ -20,6 +21,7 @@ function [mechanizm] = DodajWiez(mechanizm,typ,ob1,punkt1,ob2,punkt2,funkcja)
 %PB         --- punkt 2
 %fun        --- funkcja opsiuj¹ca relacje miedzy punktami wiezu
 %id         --- numer id wiezu
+%funid      --- numer funkcji steruj¹cej
 
 %funkcja zlicza iloœæ wiêzów, która jest przechowywana w strukturze mechanizm
 n = mechanizm.wiezyilosc;
@@ -31,7 +33,7 @@ end
 
 %TYP OBROTOWA (odbiera mo¿liwoœæ ruchu postêpowego punktów wzglêdem siebie)
 if strcmp(typ,'obrotowa')
-    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',funkcja,'id',n);
+    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',funkcja,'id',n,'funid',funid);
     mechanizm.wiezyilosc = mechanizm.wiezyilosc+2;
 end
 
@@ -45,7 +47,7 @@ if strcmp(typ,'postepowa')
     %wyznaczenie v(j) -> j czyli drugi uk³ad, zwi¹zany z C2
     v = [0,-1;1,0]*inv(R(C2.kat))*d; %???????????????????????????
     F = @(t)[C1.kat-C2.kat;v]; %??????????????????????????????????
-    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n);
+    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n,'funid',funid);
     mechanizm.wiezyilosc = mechanizm.wiezyilosc+2; %wiêz odbiera dwa stopnie swobody
 end
 
@@ -55,7 +57,7 @@ if strcmp(typ,'mocowanie')
     C1 = FindCzlon(ob1,mechanizm.czlony); %pobiera strukturê cz³onu (obiekt 1)
     P1 = FindPoint(punkt1,C1.lancuch); %pobiera strukturê punktu (punkt 1)
     F = @(t)C1.srodek.q+R(C1.kat)*P1.q; %funkcja opisuj¹ca wspó³rzêdn¹ punktu
-    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n);
+    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n,'funid',funid);
     mechanizm.wiezyilosc = mechanizm.wiezyilosc+2; %wiêz odbiera dwa stopnie swobody
 end
 %TYP PRZEMIESZCZENIE --- ???????????????????????????????????????
@@ -69,7 +71,7 @@ if strcmp(typ,'przemieszczenie')
     u = inv(R(C2.kat))*d; %??????????????????????????????????????
     u = u/norm(u); %u - wersor na kierunku miêdzy punktami 1 i 2
     F = @(t)[funkcja(t);u]; 
-    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n);
+    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n,'funid',funid);
     mechanizm.wiezyilosc = mechanizm.wiezyilosc+1; %wiêz odbiera jeden stopieñ swobody
 end
 

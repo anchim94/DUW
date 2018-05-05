@@ -4,6 +4,7 @@ function [mechanizm] = QdoMechanizmu(mechanizm,q)
 %ARGUMENTY FUNKCJI:
 %mechanizm  --- struktura mechanizmu
 %q          --- wektor wspó³rzêdnych cz³onów (x,y,k¹t)
+
 n = length(mechanizm.czlony);
 %dla ka¿dego cz³onu przyspisuje nowe wspó³rzêdne œrodka i k¹t obrotu
 for i=1:n

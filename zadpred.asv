@@ -1,0 +1,11 @@
+function [m] = zadpred(mechanizm,t)
+%zadpred Funkcja rozwi¹zuj¹ca zadanie na prêdkoœci 
+
+m=mechanizm;
+
+J=GenJakobi(m,t);
+T=GenJakobiT(m,t);
+m.pred = -J\T;
+
+end
+

@@ -10,6 +10,6 @@ for i =1:length(zrodlo)
         return
     end
 end
-Disp('Nie znaleziono poszukiwanego czlonu');
+disp('Nie znaleziono poszukiwanego czlonu');
 end
 

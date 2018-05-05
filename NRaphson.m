@@ -19,7 +19,7 @@ for i=1:max_it
    Q = Q - dQ; %nowe wspó³rzêdne punktów (wzór za metod¹ NR)
    m = QdoMechanizmu(m,Q); %aktualizacja wspó³rzêdnych cz³onów
 end
-if i == max_it %gdy brak zbie¿noœci przyjmuje ostateczny wynik za dobry
+if i == max_it %gdy brak zbie¿noœci przyjmuje pocz¹tkowy stan za dobry
    disp('Brak zbieznosci');
    res = mechanizm;
    return;
