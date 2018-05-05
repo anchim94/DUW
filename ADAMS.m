@@ -9,15 +9,24 @@ m = mechanizm;
 %dodawanie monitorów 
 m = DodajMonitor(m,'X','CZL3','K'); 
 m = DodajMonitor(m,'Y','CZL3','K');
-m = DodajMonitor(m,'VX','CZL3','K'); 
-m = DodajMonitor(m,'VY','CZL3','K');
+m = DodajMonitor(m,'VX','CZL1','O'); 
+m = DodajMonitor(m,'VY','CZL1','O');
+m = DodajMonitor(m,'VX','CZL7','H'); 
+m = DodajMonitor(m,'VY','CZL7','H');
+m = DodajMonitor(m,'VX','CZL5','N'); 
+m = DodajMonitor(m,'VY','CZL5','N');
 
 RysujMechanizm(m);
 xlim([-1 4])
 ylim([-4 2])
 tablica = zeros(length(0:krok:czas_koncowy),m.liczbamonitorow+1);
 it = 1;
+mechanizm.pred = zeros(mechanizm.wiezyilosc,1);
+mechanizm.przysp = zeros(mechanizm.wiezyilosc,1);
 for i=0:krok:czas_koncowy
+   Q = QzMechanizmu(m);
+   Q = Q + mechanizm.pred * krok + 0.5*mechanizm.przysp*krok*krok;
+   m = QdoMechanizmu(m,Q);
    m = NRaphson(m,i); %rozwi¹zujemy krok za pomoc¹ metody NR
    m = zadpred(m,i);
    clf;

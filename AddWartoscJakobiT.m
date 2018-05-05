@@ -12,7 +12,7 @@ wynik = wektor; %wynikowa macierz przyjmuje wartoœæ pocz¹tkow¹
 if strcmp(wiez.typ,'przemieszczenie')
     %dodawanie elementów wektora ró¿niczkowania przez t
     id=wiez.funid;%numer id funkcji kieruj¹cej
-    wynik(wiez.id+1,1) = - mechanizm.a(id) * mechanizm.om(id) * cos(mechanizm.om(id)*(t+0.01)+mechanizm.phi(id));
+    wynik(wiez.id+1,1) = - mechanizm.a(id) * mechanizm.om(id) * cos(mechanizm.om(id)*(t)+mechanizm.phi(id));
     return;
 end
 end
