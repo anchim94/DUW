@@ -1,6 +1,9 @@
 function [q] = QzMechanizmu(mechanizm)
-%UNTITLED17 Summary of this function goes here
-%   Detailed explanation goes here
+%QzMechanizmu Funkcja zwraca macierz wspó³rzêdnych x i y oraz k¹tu obrotu
+%wszystkich cz³onów mechanizmu
+%ARGUMENTY FUNKCJI:
+%mechanizm  --- struktura mechanizm
+
 n = length(mechanizm.czlony);
 q = zeros(3*n,1);
 for i=1:n

@@ -1,7 +1,10 @@
 function [mechanizm] = GenerujProblem()
-%GenerujProblem funkcja generuj¹ca z danych wyjsciowych elementy do
+%GenerujProblem Funkcja generuj¹ca z danych wyjsciowych elementy do
 %analizy w oparciu o ogólny rysunek problemu. Wykorzystuje ogólne podejœcie
 %do rozwi¹zywania problemów 2D
+
+%generowanie punktów mechanizmu przy pomocy funkcji GenPun(nazwa,x,y)
+%tablica punkty przechowuje listê punktów mechanizmu
 punkty = [GenPun('O',0.0,0.0);GenPun('H',0.4,-0.2);GenPun('N',0.1,-0.8),
 GenPun('M',1.9,-1.4);GenPun('G',1.6,0.4);GenPun('D',2.2,-0.4);GenPun('C',2.5,-1.4);
 GenPun('B',2.9,-1.1);GenPun('A',2.9,-1.9);GenPun('K',3.4,-1.9);
@@ -10,16 +13,19 @@ GenPun('c4',2.70,-1.25);GenPun('c5',0.55,-0.95);GenPun('c6',1.45,-1.25);
 GenPun('c7',0.70,-0.05);GenPun('c8',1.30,0.25);GenPun('Q',1.0,0.1);
 GenPun('W',1.0,-1.1)];
 
+%generowanie cz³onów mechanizmu przy pomocy funkcji GenCzlon(nazwa,srodek,punkty,data,id)
+%tablica czlony przechowuje listê punktów mechanizmu
 mechanizm.czlony = [GenCzlon('CZL1','c1',['O','D','A','M'],punkty,0);
 GenCzlon('CZL2','c2',['G','D','C'],punkty,1);GenCzlon('CZL3','c3',['A','B','K'],punkty,2);
 GenCzlon('CZL4','c4',['B','C'],punkty,3);GenCzlon('CZL5','c5',['N','W'],punkty,4);
 GenCzlon('CZL6','c6',['M','W'],punkty,5);GenCzlon('CZL7','c7',['H','Q'],punkty,6);
 GenCzlon('CZL8','c8',['G','Q'],punkty,7)];
 
-%f1 = @(t)-sqrt(1.8*1.8+0.6*0.6)+0.5*cos(2*t)-0.5;
-f1 = @(t)-sqrt(1.8*1.8+0.6*0.6)-0.15*sin(t);
-f2 = @(t)-sqrt(1.2*1.2+0.6*0.6)-0.15*sin(2*pi*t);
+%definicja funkcji opisuj¹cych przemieszczenie si³owników
+f1 = @(t)-sqrt(1.8*1.8+0.6*0.6)+0.5*cos(2*t)-0.5;
+f2 = @(t)-sqrt(1.2*1.2+0.6*0.6)-0.2-0.2*sin(0.1*t);
 
+%definiowanie równañ wiêzów przy pomocy funkcji DodajWiez(mechanizm,typ,ob1,punkt1,ob2,punkt2,funkcja)
 mechanizm.wiezyilosc = 0;
 mechanizm.liczbamonitorow = 0;
 

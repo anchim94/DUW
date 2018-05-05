@@ -1,16 +1,20 @@
 function [res] = NRaphson(mechanizm,t)
-%UNTITLED16 Summary of this function goes here
-%   Detailed explanation goes here
-m = mechanizm;
-max_it = 30;
-eps = 1e-9;
+%NRaphson Funkcja oblicza za pomoc¹ metody NewtonaRaphsona przemieszczenie
+%mechanizmu
+%ARGUMENTY FUNKCJI:
+%mechanizm  --- struktura mechanizm
+%t          --- czas 
+
+m = mechanizm; 
+max_it = 30; %ograniczenie liczby iteracji
+eps = 1e-9; %dok³adnoœæ wyniku - warunek STOP
 for i=1:max_it
-   P = GenRownanieWiezow(m,t);
-   Q = QzMechanizmu(m);
-   if norm(P)<eps 
+   P = GenRownanieWiezow(m,t); %generowanie równañ wiêzów
+   Q = QzMechanizmu(m); %pobieramy wspó³rzêdne cz³onów
+   if norm(P)<eps %warunek STOP
        break;
    end
-   J = GenJakobi(m,t);
+   J = GenJakobi(m,t); %generowanie macierzy Jacobiego
    dQ = J\P;
    Q = Q - dQ;
    m = QdoMechanizmu(m,Q);

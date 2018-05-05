@@ -1,10 +1,16 @@
 function [wynik] = AddWartoscJakobi(macierz,mechanizm,wiez,t)
 %WartoscJakobi Funkcja generuj¹ca wartoœæ fragmentu macierzy Jakobiego dla
 %danego wiêzu.
-wynik = macierz;
-omega = [0,-1;1,0];
+%ARGUMENTY FUNKCJI:
+%macierz    --- wynikowa macierz Jacobiego
+%mechanizm  --- struktura mechanizm
+%wiez       --- wiez dla którego generowane jest równanie
+%t          --- czas
+
+wynik = macierz; %wynikowa macierz przyjmuje wartoœæ pocz¹tkow¹
+omega = [0,-1;1,0]; %macierz ró¿niczkowania omega
 if strcmp(wiez.typ, 'obrotowa')
-    C1 = FindCzlon(wiez.OA,mechanizm.czlony);
+    C1 = FindCzlon(wiez.OA,mechanizm.czlony); 
     P1 = FindPoint(wiez.PA,C1.lancuch);
     C2 = FindCzlon(wiez.OB,mechanizm.czlony);
     P2 = FindPoint(wiez.PB,C2.lancuch);
