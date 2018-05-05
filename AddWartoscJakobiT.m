@@ -1,5 +1,6 @@
 function [wynik] = AddWartoscJakobiT(wektor,mechanizm,wiez,t)
-%AddWartoscJakobi Funkcja generuj¹ca wartoœæ fragmentu macierzy Jakobiego dla danego wiêzu.
+%AddWartoscJakobi Funkcja generuj¹ca wartoœæ fragmentu wektora zró¿niczkowanych lewych stron 
+%r-nañ wiêzów dla danego wiêzu.
 %ARGUMENTY FUNKCJI:
 %wektor    --- wynikowy wektor ró¿niczkowania
 %mechanizm  --- struktura mechanizm

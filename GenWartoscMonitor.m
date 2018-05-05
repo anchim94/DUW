@@ -33,6 +33,18 @@ for i=1:mechanizm.liczbamonitorow
       r = mechanizm.pred([3*C1.id+1 3*C1.id+2],1)+omega*R(C1.kat)*P1.q*mechanizm.pred(3*C1.id+3,1);
         result(i+1) = r(2);
    end
+      %TYP 'AX' - pobiera przyspieszenie punktu na kierunku X 
+   if strcmp(monitor.typ,'AX')
+       r = mechanizm.przysp([3*C1.id+1 3*C1.id+2],1)-R(C1.kat)*P1.q*mechanizm.pred(3*C1.id+3,1)+...
+       omega*R(C1.kat)*P1.q*mechanizm.przysp(3*C1.id+3,1);
+        result(i+1) = r(1);
+   end
+         %TYP 'AY' - pobiera przyspieszenie punktu na kierunku Y 
+   if strcmp(monitor.typ,'AY')
+       r = mechanizm.przysp([3*C1.id+1 3*C1.id+2],1)-R(C1.kat)*P1.q*mechanizm.pred(3*C1.id+3,1)+...
+       omega*R(C1.kat)*P1.q*mechanizm.przysp(3*C1.id+3,1);
+        result(i+1) = r(2);
+   end
 end
 result = result';
 end

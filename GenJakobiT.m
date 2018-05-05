@@ -5,10 +5,10 @@ function [jakobit] = GenJakobiT(mechanizm,t)
 %mechanizm  --- struktura mechanizm
 %t          --- czas 
 
-jakobit = zeros(mechanizm.wiezyilosc,1);%wielkoœæ macierzy zale¿y od iloœæ równañ wiêzów
+jakobit = zeros(mechanizm.wiezyilosc,1);%wielkoœæ wektora zale¿y od iloœci równañ wiêzów
 for i=1:length(mechanizm.wiezy)
     jakobit = AddWartoscJakobiT(jakobit,mechanizm,mechanizm.wiezy(i),t);
-    %funkcja AddWartoscJacobi zwraca odpowiednie wartoœci do macierzy
-    %Jacobiego
+    %funkcja AddWartoscJacobiT zwraca odpowiednie wartoœci do wektora
+    %zró¿niczkowanych lewych stron
 end
 end
