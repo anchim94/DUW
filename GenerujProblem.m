@@ -16,8 +16,9 @@ GenCzlon('CZL4','c4',['B','C'],punkty,3);GenCzlon('CZL5','c5',['N','W'],punkty,4
 GenCzlon('CZL6','c6',['M','W'],punkty,5);GenCzlon('CZL7','c7',['H','Q'],punkty,6);
 GenCzlon('CZL8','c8',['G','Q'],punkty,7)];
 
-f1 = @(t)-sqrt(1.8*1.8+0.6*0.6)+0.5*cos(2*t)-0.5;
-f2 = @(t)-sqrt(1.2*1.2+0.6*0.6)-0.2-0.2*sin(0.1*t);
+%f1 = @(t)-sqrt(1.8*1.8+0.6*0.6)+0.5*cos(2*t)-0.5;
+f1 = @(t)-sqrt(1.8*1.8+0.6*0.6)-0.15*sin(t);
+f2 = @(t)-sqrt(1.2*1.2+0.6*0.6)-0.15*sin(2*pi*t);
 
 mechanizm.wiezyilosc = 0;
 mechanizm.liczbamonitorow = 0;

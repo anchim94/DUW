@@ -4,6 +4,8 @@ function [monitory] = ADAMS(mechanizm,czas_koncowy,krok)
 m = mechanizm;
 m = DodajMonitor(m,'X','CZL2','C');
 m = DodajMonitor(m,'Y','CZL2','C');
+m = DodajMonitor(m,'X','CZL8','G');
+m = DodajMonitor(m,'Y','CZL8','G');
 RysujMechanizm(m);
 xlim([-1 4])
 ylim([-4 2])
@@ -15,7 +17,7 @@ for i=0:krok:czas_koncowy
    RysujMechanizm(m);
    tablica(it,:) = GenWartoscMonitor(m,i);
    it = it+1;
-   pause(krok);
+   pause(krok/10);
 end
 monitory = tablica;
 end
