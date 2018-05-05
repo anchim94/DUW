@@ -7,10 +7,11 @@ function [monitory] = ADAMS(mechanizm,czas_koncowy,krok)
 
 m = mechanizm;
 %dodawanie monitorów 
-m = DodajMonitor(m,'X','CZL2','C'); 
-m = DodajMonitor(m,'Y','CZL2','C');
-m = DodajMonitor(m,'VX','CZL2','C'); 
-m = DodajMonitor(m,'VY','CZL2','C');
+m = DodajMonitor(m,'X','CZL3','K'); 
+m = DodajMonitor(m,'Y','CZL3','K');
+m = DodajMonitor(m,'VX','CZL3','K'); 
+m = DodajMonitor(m,'VY','CZL3','K');
+
 RysujMechanizm(m);
 xlim([-1 4])
 ylim([-4 2])
