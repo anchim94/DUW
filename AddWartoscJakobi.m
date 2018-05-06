@@ -54,16 +54,16 @@ if strcmp(wiez.typ, 'mocowanie')
     wynik([wiez.id+1 wiez.id+2],C1.id*3+3) = omega*R(C1.kat)*P1.q;
     return;
 end
-%TYP OBROT
-if strcmp(wiez.typ, 'obrot')
-    C1 = FindCzlon(wiez.OA,mechanizm.czlony);%pobiera strukturê cz³onu (obiekt 1)
-    P1 = FindPoint(wiez.PA,C1.lancuch);%pobiera strukturê punktu (punkt 1)
-    
-    %dodawanie elementów macierzy Jacobiego
-    wynik(wiez.id+1,C1.id*3+3) = 1;
-    return;
-end
 
+% %TYP OBROT
+% if strcmp(wiez.typ, 'obrot')
+%     C1 = FindCzlon(wiez.OA,mechanizm.czlony);%pobiera strukturê cz³onu (obiekt 1)
+%     P1 = FindPoint(wiez.PA,C1.lancuch);%pobiera strukturê punktu (punkt 1)
+%     
+%     %dodawanie elementów macierzy Jacobiego
+%     wynik(wiez.id+1,C1.id*3+3) = 1;
+%     return;
+% end
 
 %TYP PRZEMIESZCZENIE
 if strcmp(wiez.typ,'przemieszczenie')

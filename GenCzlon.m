@@ -27,7 +27,7 @@ czlon.kolor = rand(1,3); %losowanie koloru cz³onu
 for i=1:length(punkty)
     p = FindPoint(punkty(i),data);
     B = p.q - czlon.srodek.q;
-    p.q = R(czlon.kat)\B;
+    p.q = R(czlon.kat)\B; %przekszta³cenie wspó³rzêdnych absolutnych na lokalne
     lancuch(i) = p; %tablicy lancuch przypisujemy listê punktów cz³onu we wspó³rzêdnych LOKALNYCH
 end
 czlon.lancuch = lancuch; %do³¹czenie tablicy lancuch jako elementu struktury czlon

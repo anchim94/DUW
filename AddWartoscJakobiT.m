@@ -16,10 +16,10 @@ if strcmp(wiez.typ,'przemieszczenie')
     wynik(wiez.id+1,1) = - mechanizm.a(id) * mechanizm.om(id) * cos(mechanizm.om(id)*(t)+mechanizm.phi(id));
     return;
 end
-%TYP OBROT
-if strcmp(wiez.typ,'obrot')
-    %dodawanie elementów wektora ró¿niczkowania przez t
-    wynik(wiez.id+1,1) = - mechanizm.f1(t);
-    return;
-end
+% %TYP OBROT
+% if strcmp(wiez.typ,'obrot')
+%     %dodawanie elementów wektora ró¿niczkowania przez t
+%     wynik(wiez.id+1,1) = - mechanizm.f1(t);
+%     return;
+% end
 end
