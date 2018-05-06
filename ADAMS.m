@@ -1,4 +1,4 @@
-function [monitory] = ADAMS(mechanizm,czas_koncowy,krok)
+function [monitory,m] = ADAMS(mechanizm,czas_koncowy,krok)
 %ADAMS Funkcja rozwi¹zuje zadanie na po³o¿enia, prêdkoœci i przyspieszenia
 %ARGUMENTY FUNKCJI:
 %mechanizm      --- struktura mechanizmu
@@ -13,7 +13,12 @@ m = DodajMonitor(m,'VX','CZL3','K');
 m = DodajMonitor(m,'VY','CZL3','K');
 m = DodajMonitor(m,'AX','CZL3','K'); 
 m = DodajMonitor(m,'AY','CZL3','K');
-
+m = DodajMonitor(m,'AX','CZL1','O'); 
+m = DodajMonitor(m,'AY','CZL1','O');
+m = DodajMonitor(m,'AX','CZL5','N'); 
+m = DodajMonitor(m,'AY','CZL5','N');
+m = DodajMonitor(m,'AX','CZL7','H'); 
+m = DodajMonitor(m,'AY','CZL7','H');
 RysujMechanizm(m);
 xlim([-1 4])
 ylim([-4 2])

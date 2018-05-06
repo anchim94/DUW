@@ -5,7 +5,7 @@ function [mechanizm] = GenerujProblem()
 
 %generowanie punktów mechanizmu przy pomocy funkcji GenPun(nazwa,x,y)
 %tablica punkty przechowuje listê punktów mechanizmu
-punkty = [GenPun('O',0.0,0.0);GenPun('H',0.4,-0.2);GenPun('N',0.1,-0.8),
+punkty = [GenPun('O',0.0,0.0);GenPun('H',0.4,-0.2);GenPun('N',0.1,-0.8);
 GenPun('M',1.9,-1.4);GenPun('G',1.6,0.4);GenPun('D',2.2,-0.4);GenPun('C',2.5,-1.4);
 GenPun('B',2.9,-1.1);GenPun('A',2.9,-1.9);GenPun('K',3.4,-1.9);
 GenPun('c1',1.65,-0.85);GenPun('c2',2.15,-0.50);GenPun('c3',3.05,-1.60);
@@ -15,11 +15,11 @@ GenPun('W',1.0,-1.1)];
 
 %generowanie cz³onów mechanizmu przy pomocy funkcji GenCzlon(nazwa,srodek,punkty,data,id)
 %tablica czlony przechowuje listê punktów mechanizmu
-mechanizm.czlony = [GenCzlon('CZL1','c1',['O','D','A','M'],punkty,0);
-GenCzlon('CZL2','c2',['G','D','C'],punkty,1);GenCzlon('CZL3','c3',['A','B','K'],punkty,2);
-GenCzlon('CZL4','c4',['B','C'],punkty,3);GenCzlon('CZL5','c5',['N','W'],punkty,4);
-GenCzlon('CZL6','c6',['M','W'],punkty,5);GenCzlon('CZL7','c7',['H','Q'],punkty,6);
-GenCzlon('CZL8','c8',['G','Q'],punkty,7)];
+mechanizm.czlony = [GenCzlon('CZL1','c1',0,['O','D','A','M'],punkty,0);
+GenCzlon('CZL2','c2',0,['G','D','C'],punkty,1);GenCzlon('CZL3','c3',0,['A','B','K'],punkty,2);
+GenCzlon('CZL4','c4',0,['B','C'],punkty,3);GenCzlon('CZL5','c5',0,['N','W'],punkty,4);
+GenCzlon('CZL6','c6',0,['M','W'],punkty,5);GenCzlon('CZL7','c7',0,['H','Q'],punkty,6);
+GenCzlon('CZL8','c8',0,['G','Q'],punkty,7)];
 
 %definicja funkcji opisuj¹cych przemieszczenie si³owników
 %f(t)=l+a*sin(om*t+phi)

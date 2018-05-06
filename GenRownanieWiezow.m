@@ -3,9 +3,9 @@ function [result] = GenRownanieWiezow(mechanizm,t)
 %ARGUMENTY FUNKCJI:
 %mechanizm  --- struktura mechanizm
 %t          --- czas 
-
-n = length(mechanizm.czlony);
-result = zeros(3*n,1);
+%n = length(mechanizm.czlony);
+%result = zeros(3*n,1);
+result = zeros(mechanizm.wiezyilosc,1);
 for i=1:length(mechanizm.wiezy)
     result = AddWartoscWiezu(result,mechanizm,mechanizm.wiezy(i),t);
     %funkcja AddWartoscWiezu zwraca odpowiednie wartoœci wiêzów

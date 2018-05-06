@@ -6,7 +6,7 @@ function [res] = NRaphson(mechanizm,t)
 %t          --- czas 
 
 m = mechanizm; 
-max_it = 30; %ograniczenie liczby iteracji
+max_it = 50; %ograniczenie liczby iteracji
 eps = 1e-9; %dok³adnoœæ wyniku - warunek STOP
 for i=1:max_it
    P = GenRownanieWiezow(m,t); %generowanie równañ wiêzów

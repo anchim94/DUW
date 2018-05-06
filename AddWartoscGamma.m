@@ -32,9 +32,11 @@ if strcmp(wiez.typ, 'postepowa')
     v = f(2:3,1); %wektor prostopadly do ruchu postêpowego
     
     %dodawanie elementów wektora Gamma
-    wynik(wiez.id+1,1) = -(R(C2.kat)*v)'*(2*omega*(pr([(3*C2.id)+1 (3*C2.id)+2])-pr([(3*C1.id)+1 (3*C1.id)+2]))*pr((3*C1.id)+3)+...
+    pr([(3*C2.id)+1 (3*C2.id)+2 (3*C2.id)+3])=[0 0 0];
+    wynik(wiez.id+2,1) = (R(C2.kat)*v)'*(2*omega*(pr([(3*C2.id)+1 (3*C2.id)+2])-pr([(3*C1.id)+1 (3*C1.id)+2]))*pr((3*C2.id)+3)+...
     (C2.srodek.q-C1.srodek.q)*(pr((3*C2.id)+3))^2 - R(C1.kat)*P1.q*(pr((3*C2.id)+3)-pr((3*C1.id)+3))^2);
-    wynik(wiez.id+2,1) = 0;
+
+    wynik(wiez.id+1,1) = 0;
     return;
 end
 
@@ -45,6 +47,16 @@ if strcmp(wiez.typ, 'mocowanie')
     
     %dodawanie elementów macierzy Jacobiego
     wynik([wiez.id+1 wiez.id+2],1) = R(C1.kat)*P1.q*pr(3*C1.id+3)^2;
+    return;
+end
+
+%TYP OBROT
+if strcmp(wiez.typ, 'obrot')
+    C1 = FindCzlon(wiez.OA,mechanizm.czlony);%pobiera strukturê cz³onu (obiekt 1)
+    P1 = FindPoint(wiez.PA,C1.lancuch);%pobiera strukturê punktu (punkt 1)
+    
+    %dodawanie elementów macierzy Jacobiego
+    wynik(wiez.id+1,1) = -mechanizm.f2(t);
     return;
 end
 
@@ -59,7 +71,7 @@ if strcmp(wiez.typ,'przemieszczenie')
     
      %dodawanie elementów wektora ró¿niczkowania przez t
     id=wiez.funid;%numer id funkcji kieruj¹cej
-    wynik(wiez.id+1,1) = -(R(C2.kat)*u)'*(2*omega*(pr([(3*C2.id)+1 (3*C2.id)+2])-pr([(3*C1.id)+1 (3*C1.id)+2]))*pr((3*C1.id)+3)+...
+    wynik(wiez.id+1,1) = (R(C2.kat)*u)'*(2*omega*(pr([(3*C2.id)+1 (3*C2.id)+2])-pr([(3*C1.id)+1 (3*C1.id)+2]))*pr((3*C2.id)+3)+...
     (C2.srodek.q-C1.srodek.q)*(pr(3*C2.id+3))^2 - R(C1.kat)*P1.q*(pr(3*C2.id+3)-pr(3*C1.id+3))^2)-mechanizm.a(id) * (mechanizm.om(id))^2 * sin(mechanizm.om(id)*(t)+mechanizm.phi(id));
     return;
 end

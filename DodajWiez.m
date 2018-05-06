@@ -46,6 +46,7 @@ if strcmp(typ,'postepowa')
     d = C1.srodek.q+R(C1.kat)*P1.q-C2.srodek.q-R(C2.kat)*P2.q; %d - odleglosc miedzy punktami 1 i 2
     %wyznaczenie v(j) -> j czyli drugi uk³ad, zwi¹zany z C2
     v = [0,-1;1,0]*inv(R(C2.kat))*d; %???????????????????????????
+    v = v/norm(v);
     F = @(t)[C1.kat-C2.kat;v]; %??????????????????????????????????
     wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n,'funid',funid);
     mechanizm.wiezyilosc = mechanizm.wiezyilosc+2; %wiêz odbiera dwa stopnie swobody
@@ -59,6 +60,11 @@ if strcmp(typ,'mocowanie')
     F = @(t)C1.srodek.q+R(C1.kat)*P1.q; %funkcja opisuj¹ca wspó³rzêdn¹ punktu
     wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',F,'id',n,'funid',funid);
     mechanizm.wiezyilosc = mechanizm.wiezyilosc+2; %wiêz odbiera dwa stopnie swobody
+end
+%TYP OBROT - wiêz kieruj¹cy obrotem
+if strcmp(typ,'obrot')  
+    wiez = struct('typ',typ,'OA',ob1,'PA',punkt1,'OB',ob2,'PB',punkt2,'fun',funkcja,'id',n,'funid',funid);
+    mechanizm.wiezyilosc = mechanizm.wiezyilosc+1; %wiêz odbiera dwa stopnie swobody
 end
 %TYP PRZEMIESZCZENIE --- ???????????????????????????????????????
 if strcmp(typ,'przemieszczenie')
